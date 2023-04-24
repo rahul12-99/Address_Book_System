@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class AddressBook {
     /*
      * 1) creating object of arraylist
-     * 2) created a method for add contact details
-     * 3) created main method and calling add-contact method
+     * 2) created method for add contact details
+     * 3) created method for edit contact details
+     * 4) created main method and calling add-contact method and edit-contact method
      */
     /*
       1) creating object of arraylist
@@ -46,10 +47,60 @@ public class AddressBook {
         System.out.println(list);
     }
     /*
-      3) created main method and calling add-contact method
+     3) created method for edit contact details
+     */
+    public void editContact() {
+        System.out.println("Please enter first name whose details you want to edit!");
+        Scanner sc = new Scanner(System.in);
+        String name = sc.next();
+        for (ContactPerson person : list) {
+            if (name.equals(person.getFirstName())) {
+                System.out.println("Enter First name to update");
+                person.setFirstName(sc.next());
+                System.out.println("Enter Last name to  update");
+                person.setLastName(sc.next());
+                System.out.println("Enter Address to  update");
+                person.setAddress(sc.next());
+                System.out.println("Enter City to update");
+                person.setCity(sc.next());
+                System.out.println("Enter State to update");
+                person.setState(sc.next());
+                System.out.println("Enter Zip to update");
+                person.setZip(sc.nextInt());
+                System.out.println("Enter Phone number to update");
+                person.setPhoneNumber(sc.nextLong());
+                System.out.println("Enter Email to update");
+                person.setEmail(sc.next());
+            } else {
+                System.out.println("Enter contact details not available");
+            }
+        }
+        System.out.println(list);
+    }
+    /*
+      4) created main method and calling add-contact method and edit contact method
      */
     public static void main(String[] args) {
         AddressBook addressBook = new AddressBook();
-        addressBook.addContact();
+        Scanner sc = new Scanner(System.in);
+        boolean b = true;
+        while (b) {
+            System.out.println("-*-*-*-Welcome to Address Book-*-*-*-");
+            System.out.println("Enter choice which you want to perform");
+            System.out.println("Enter 1 to add contact");
+            System.out.println("Enter 2 to edit contact");
+            System.out.println("Enter 3 to exit");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    addressBook.addContact();
+                    break;
+                case 2:
+                    addressBook.editContact();
+                    break;
+                default:
+                    b = false;
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ public class ContactPerson {
     /**
      * 1) initialize the variable
      * 2) using getter and setter method for getting and setting value
+     * 3) using to string method for printing object
      */
     // 1) initialize the variable
     private String firstName;
@@ -63,5 +64,19 @@ public class ContactPerson {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactPerson{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
