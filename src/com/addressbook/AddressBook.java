@@ -100,10 +100,9 @@ public class AddressBook {
     }
 
     /*
-      5) created main method to calling add-contact method , edit contact method , delete contact method
+      5) created method to calling add-contact method , edit contact method , delete contact method
      */
-    public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
+    public void callAddressBook(){
         Scanner sc = new Scanner(System.in);
         boolean b = true;
         while (b) {
@@ -116,13 +115,13 @@ public class AddressBook {
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    addressBook.addContact();
+                    addContact();
                     break;
                 case 2:
-                    addressBook.editContact();
+                    editContact();
                     break;
                 case 3:
-                    addressBook.deleteContact();
+                    deleteContact();
                 default:
                     b = false;
             }
