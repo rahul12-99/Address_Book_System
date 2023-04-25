@@ -8,7 +8,8 @@ public class AddressBook {
      * 1) creating object of arraylist
      * 2) created method for add contact details
      * 3) created method for edit contact details
-     * 4) created main method and calling add-contact method and edit-contact method
+     * 4) created method for delete contact details
+     * 5) created main method and calling add-contact method and edit-contact method
      */
     /*
       1) creating object of arraylist
@@ -78,7 +79,24 @@ public class AddressBook {
         System.out.println(list);
     }
     /*
-      4) created main method and calling add-contact method and edit contact method
+     4) created method for delete contact details
+     */
+    public void deleteContact(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter first name to delete contact");
+        String name = sc.next();
+        for (int i = 0; i < list.size(); i++){
+            if (name.equals(list.get(i).getFirstName())){
+                list.remove(i);
+                break;
+            }else {
+                System.out.println("Contact details not available");
+            }
+        }
+        System.out.println(list);
+    }
+    /*
+      5) created main method to calling add-contact method , edit contact method , delete contact method
      */
     public static void main(String[] args) {
         AddressBook addressBook = new AddressBook();
@@ -89,7 +107,8 @@ public class AddressBook {
             System.out.println("Enter choice which you want to perform");
             System.out.println("Enter 1 to add contact");
             System.out.println("Enter 2 to edit contact");
-            System.out.println("Enter 3 to exit");
+            System.out.println("Enter 3 to delete contact");
+            System.out.println("Enter 4 to exit");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -98,6 +117,8 @@ public class AddressBook {
                 case 2:
                     addressBook.editContact();
                     break;
+                case 3:
+                    addressBook.deleteContact();
                 default:
                     b = false;
             }
