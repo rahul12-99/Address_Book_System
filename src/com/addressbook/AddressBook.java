@@ -9,12 +9,13 @@ public class AddressBook {
      * 2) created method for add contact details
      * 3) created method for edit contact details
      * 4) created method for delete contact details
-     * 5) created main method and calling add-contact method and edit-contact method
+     * 5) created main method and calling add-contact method ,edit-contact method,delete-contact method
      */
     /*
       1) creating object of arraylist
      */
     ArrayList<ContactPerson> list = new ArrayList<>();
+
     /*
       2) created a method for add contact details
      */
@@ -47,6 +48,7 @@ public class AddressBook {
         }
         System.out.println(list);
     }
+
     /*
      3) created method for edit contact details
      */
@@ -78,23 +80,25 @@ public class AddressBook {
         }
         System.out.println(list);
     }
+
     /*
      4) created method for delete contact details
      */
-    public void deleteContact(){
+    public void deleteContact() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter first name to delete contact");
         String name = sc.next();
-        for (int i = 0; i < list.size(); i++){
-            if (name.equals(list.get(i).getFirstName())){
+        for (int i = 0; i < list.size(); i++) {
+            if (name.equals(list.get(i).getFirstName())) {
                 list.remove(i);
                 break;
-            }else {
+            } else {
                 System.out.println("Contact details not available");
             }
         }
         System.out.println(list);
     }
+
     /*
       5) created main method to calling add-contact method , edit contact method , delete contact method
      */
