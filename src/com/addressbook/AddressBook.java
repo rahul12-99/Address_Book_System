@@ -1,6 +1,7 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -28,6 +29,15 @@ public class AddressBook {
             ContactPerson contact = new ContactPerson();
             System.out.println("Enter first name of " + i + " contact ");
             contact.setFirstName(sc.next());
+            /*
+             * Here taking optional reference variable for checking the duplicate.
+             */
+            Optional<ContactPerson> ref_var = list.stream()
+                    .filter(name -> name.getFirstName().equals(contact.getFirstName())).findAny();
+            if (ref_var.isPresent()) {
+                System.out.println("Name already exist");
+                return;
+            }
             System.out.println("Enter last name " + i + " contact ");
             contact.setLastName(sc.next());
             System.out.println("Enter address " + i + " contact ");
