@@ -15,7 +15,8 @@ public class AddressBookDictionary {
      * 5) created method for select and perform operation on addressBook
      * 6) created method for delete addressBook
      * 7) created method for view contact by city
-     * 8) created main method for calling all the method
+     * 8) created method for get no of contact by city
+     * 9) created main method for calling all the method
      */
     // 1) Using hashmap for creating multiple addressBook
     Map<String, AddressBook> map = new HashMap<>();
@@ -56,7 +57,7 @@ public class AddressBookDictionary {
         }
     }
     /*
-     * 3) created method for delete addressBook
+     * 6) created method for delete addressBook
      */
     public void deleteAddressBook() {
         displayAddressBook();
@@ -82,7 +83,17 @@ public class AddressBookDictionary {
         System.out.println(listOfContacts);
     }
     /*
-     * 8) created main method for calling all the method
+     * 8) created method for get no of contact by city
+     */
+    public void getNumberContacts() {
+        System.out.println("Please enter city name");
+        String cityName = scanner.next();
+        long count = map.values().stream().flatMap(p -> p.list.stream()).filter(p -> p.getCity().equalsIgnoreCase(cityName)).count();
+        System.out.println("Count of contacts with " + cityName + " are " + count);
+    }
+
+    /*
+     * 9) created main method for calling all the method
      */
     public static void main(String[] args) {
         System.out.println("-*-*-*-*-*-Welcome To AddressBookDictionary-*-*-*-*-*-");
@@ -95,7 +106,8 @@ public class AddressBookDictionary {
             System.out.println("Enter 3 for delete addressBook!");
             System.out.println("Enter 4 for display addressBook!");
             System.out.println("Enter 5 for search contact by city");
-            System.out.println("Enter 6 for exit from addressBook!");
+            System.out.println("Enter 6 to get no of contact");
+            System.out.println("Enter 7 for exit from addressBook!");
             Scanner scanner1 = new Scanner(System.in);
             int choice = scanner1.nextInt();
 
@@ -115,6 +127,8 @@ public class AddressBookDictionary {
                 case 5:
                     addressBookMain.viewContactsWithCity();
                     break;
+                case 6:
+                    addressBookMain.getNumberContacts();
                 default:
                     b = false;
             }
