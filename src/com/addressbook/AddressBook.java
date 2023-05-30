@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AddressBook {
     /*
@@ -12,7 +13,8 @@ public class AddressBook {
      * 2) created method for add contact details
      * 3) created method for edit contact details
      * 4) created method for delete contact details
-     * 5) created main method and calling add-contact method ,edit-contact method,delete-contact method
+     * 5) created method for search person details by state
+     * 6) created main method and calling all the method
      */
     /*
       1) creating object of arraylist
@@ -112,7 +114,7 @@ public class AddressBook {
     }
 
     /**
-     * This method is for search person details by state
+     5)This method is for search person details by state
      */
     public void searchPersonDetails() {
         System.out.println("Enter the name of state:");
@@ -126,7 +128,7 @@ public class AddressBook {
     }
 
     /*
-      5) created method to calling add-contact method , edit contact method , delete contact method
+      6) created method to calling all the method
      */
     public void callAddressBook(){
         Scanner sc = new Scanner(System.in);

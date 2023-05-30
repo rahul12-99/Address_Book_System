@@ -1,8 +1,10 @@
 package com.addressbook;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookDictionary {
     /**
@@ -12,7 +14,8 @@ public class AddressBookDictionary {
      * 4) created method for display addressBook
      * 5) created method for select and perform operation on addressBook
      * 6) created method for delete addressBook
-     * 7) created main method for calling all the method
+     * 7) created method for view contact by city
+     * 8) created main method for calling all the method
      */
     // 1) Using hashmap for creating multiple addressBook
     Map<String, AddressBook> map = new HashMap<>();
@@ -53,7 +56,7 @@ public class AddressBookDictionary {
         }
     }
     /*
-     * 3) created method for add new addressBook
+     * 3) created method for delete addressBook
      */
     public void deleteAddressBook() {
         displayAddressBook();
@@ -68,7 +71,18 @@ public class AddressBookDictionary {
         }
     }
     /*
-     * 7) created main method for calling all the method
+     * 7) created method for view contact by city
+     */
+    public void viewContactsWithCity() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter city name");
+        String cityName = input.next();
+        List<ContactPerson> listOfContacts = map.values().stream().flatMap(p ->
+                p.list.stream()).filter(p ->p.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
+        System.out.println(listOfContacts);
+    }
+    /*
+     * 8) created main method for calling all the method
      */
     public static void main(String[] args) {
         System.out.println("-*-*-*-*-*-Welcome To AddressBookDictionary-*-*-*-*-*-");
@@ -80,7 +94,8 @@ public class AddressBookDictionary {
             System.out.println("Enter 2 for operation on addressBook!");
             System.out.println("Enter 3 for delete addressBook!");
             System.out.println("Enter 4 for display addressBook!");
-            System.out.println("Enter 5 for exit from addressBook!");
+            System.out.println("Enter 5 for search contact by city");
+            System.out.println("Enter 6 for exit from addressBook!");
             Scanner scanner1 = new Scanner(System.in);
             int choice = scanner1.nextInt();
 
@@ -96,6 +111,9 @@ public class AddressBookDictionary {
                     break;
                 case 4:
                     addressBookMain.displayAddressBook();
+                    break;
+                case 5:
+                    addressBookMain.viewContactsWithCity();
                     break;
                 default:
                     b = false;
