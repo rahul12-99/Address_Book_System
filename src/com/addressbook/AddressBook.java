@@ -1,8 +1,10 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     /*
@@ -109,6 +111,20 @@ public class AddressBook {
         System.out.println(list);
     }
 
+    /**
+     * This method is for search person details by state
+     */
+    public void searchPersonDetails() {
+        System.out.println("Enter the name of state:");
+        Scanner sc = new Scanner(System.in);
+        String stateName = sc.next();
+        List<ContactPerson> ref_var = list.stream()
+                .filter(state -> state.getState().equals(stateName)).collect(Collectors.toList());
+        for (ContactPerson contactPerson : ref_var) {
+            System.out.println("Details are: " + contactPerson);
+        }
+    }
+
     /*
       5) created method to calling add-contact method , edit contact method , delete contact method
      */
@@ -121,7 +137,8 @@ public class AddressBook {
             System.out.println("Enter 1 to add contact");
             System.out.println("Enter 2 to edit contact");
             System.out.println("Enter 3 to delete contact");
-            System.out.println("Enter 4 to exit");
+            System.out.println("Enter 4 to search contact by state");
+            System.out.println("Enter 5 to exit");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -132,6 +149,10 @@ public class AddressBook {
                     break;
                 case 3:
                     deleteContact();
+                    break;
+                case 4:
+                    searchPersonDetails();
+                    break;
                 default:
                     b = false;
             }
