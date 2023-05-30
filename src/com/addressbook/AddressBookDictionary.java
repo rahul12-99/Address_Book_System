@@ -14,7 +14,8 @@ public class AddressBookDictionary {
      * 7) created method for view contact by city
      * 8) created method for get no of contact by city
      * 9) created method for get no of contact by city
-     * 10) created main method for calling all the method
+     * 10) created method for sort by city state and zip
+     * 11) created main method for calling all the method
      */
     // 1) Using hashmap for creating multiple addressBook
     Map<String, AddressBook> map = new HashMap<>();
@@ -103,9 +104,39 @@ public class AddressBookDictionary {
                 .sorted((Comparator.comparing(ContactPerson::getFirstName))).collect(Collectors.toList());
         System.out.println(nameSortedAddressBook);
     }
+    /*
+     * 10) created method for sort by city state and zip
+     */
+    public void getSortedContacts() {
+        System.out.println("Please enter the choice parameter by which you want sort");
+        System.out.println("Press 1 for Name" + '\n' + "Press 2 for City" + '\n' + "Press 3 for State" + '\n' + "Press 4 for ZipCode");
+        final int byName = 1, byCity = 2, byState = 3, byZipCode = 4;
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        switch (choice) {
+            case byName:
+                System.out.println(map.values().stream().flatMap(N -> N.list.stream())
+                        .sorted((Comparator.comparing(ContactPerson::getFirstName))).collect(Collectors.toList()));
+                break;
+            case byCity:
+                System.out.println(map.values().stream().flatMap(C -> C.list.stream())
+                        .sorted((Comparator.comparing(ContactPerson::getCity))).collect(Collectors.toList()));
+                break;
+            case byState:
+                System.out.println(map.values().stream().flatMap(S -> S.list.stream())
+                        .sorted((Comparator.comparing(ContactPerson::getState))).collect(Collectors.toList()));
+                break;
+            case byZipCode:
+                System.out.println(map.values().stream().flatMap(Z -> Z.list.stream())
+                        .sorted((Comparator.comparing(ContactPerson::getZip))).collect(Collectors.toList()));
+                break;
+            default:
+                System.out.println("You entered wrong input");
+        }
+    }
 
     /*
-     * 10) created main method for calling all the method
+     * 11) created main method for calling all the method
      */
     public static void main(String[] args) {
         System.out.println("-*-*-*-*-*-Welcome To AddressBookDictionary-*-*-*-*-*-");
@@ -120,7 +151,8 @@ public class AddressBookDictionary {
             System.out.println("Enter 5 for search contact by city");
             System.out.println("Enter 6 to get no of contact");
             System.out.println("Enter 7 to short the contact");
-            System.out.println("Enter 8 for exit from addressBook!");
+            System.out.println("Enter 8 to sort contact by city,state,and zip");
+            System.out.println("Enter 9 for exit from addressBook!");
             Scanner scanner1 = new Scanner(System.in);
             int choice = scanner1.nextInt();
 
@@ -145,6 +177,9 @@ public class AddressBookDictionary {
                     break;
                 case 7:
                     addressBookMain.getSortedContactByName();
+                    break;
+                case 8:
+                    addressBookMain.getSortedContacts();
                 default:
                     b = false;
             }
