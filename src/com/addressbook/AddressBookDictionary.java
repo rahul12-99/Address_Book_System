@@ -1,9 +1,6 @@
 package com.addressbook;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBookDictionary {
@@ -16,7 +13,8 @@ public class AddressBookDictionary {
      * 6) created method for delete addressBook
      * 7) created method for view contact by city
      * 8) created method for get no of contact by city
-     * 9) created main method for calling all the method
+     * 9) created method for get no of contact by city
+     * 10) created main method for calling all the method
      */
     // 1) Using hashmap for creating multiple addressBook
     Map<String, AddressBook> map = new HashMap<>();
@@ -33,6 +31,7 @@ public class AddressBookDictionary {
         map.put(newBookName, addressBook);
         System.out.println(newBookName);
     }
+
     /*
      * 4) created method for display addressBook
      */
@@ -41,6 +40,7 @@ public class AddressBookDictionary {
             System.out.println(addressBookName);
         }
     }
+
     /*
      * 5) created method for select and perform operation on addressBook
      */
@@ -56,6 +56,7 @@ public class AddressBookDictionary {
             }
         }
     }
+
     /*
      * 6) created method for delete addressBook
      */
@@ -71,6 +72,7 @@ public class AddressBookDictionary {
             }
         }
     }
+
     /*
      * 7) created method for view contact by city
      */
@@ -79,9 +81,10 @@ public class AddressBookDictionary {
         System.out.println("Please enter city name");
         String cityName = input.next();
         List<ContactPerson> listOfContacts = map.values().stream().flatMap(p ->
-                p.list.stream()).filter(p ->p.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
+                p.list.stream()).filter(p -> p.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
         System.out.println(listOfContacts);
     }
+
     /*
      * 8) created method for get no of contact by city
      */
@@ -93,7 +96,16 @@ public class AddressBookDictionary {
     }
 
     /*
-     * 9) created main method for calling all the method
+     * 9) created method for get no of contact by city
+     */
+    public void getSortedContactByName() {
+        List<ContactPerson> nameSortedAddressBook = map.values().stream().flatMap(A -> A.list.stream())
+                .sorted((Comparator.comparing(ContactPerson::getFirstName))).collect(Collectors.toList());
+        System.out.println(nameSortedAddressBook);
+    }
+
+    /*
+     * 10) created main method for calling all the method
      */
     public static void main(String[] args) {
         System.out.println("-*-*-*-*-*-Welcome To AddressBookDictionary-*-*-*-*-*-");
@@ -107,7 +119,8 @@ public class AddressBookDictionary {
             System.out.println("Enter 4 for display addressBook!");
             System.out.println("Enter 5 for search contact by city");
             System.out.println("Enter 6 to get no of contact");
-            System.out.println("Enter 7 for exit from addressBook!");
+            System.out.println("Enter 7 to short the contact");
+            System.out.println("Enter 8 for exit from addressBook!");
             Scanner scanner1 = new Scanner(System.in);
             int choice = scanner1.nextInt();
 
@@ -129,6 +142,9 @@ public class AddressBookDictionary {
                     break;
                 case 6:
                     addressBookMain.getNumberContacts();
+                    break;
+                case 7:
+                    addressBookMain.getSortedContactByName();
                 default:
                     b = false;
             }
