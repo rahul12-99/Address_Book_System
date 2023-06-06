@@ -1,0 +1,1 @@
+[ContactPerson{firstName='rahul', lastName='kumar', address='patna', city='patna', state='bihar', zip=800020, phoneNumber=9934691893, email='rah@123'}, ContactPerson{firstName='kundan', lastName='kumar', address='sivan', city='seohar', state='bihar', zip=822222, phoneNumber=299383833, email='kun@123'}]

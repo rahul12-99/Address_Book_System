@@ -1,5 +1,7 @@
 package com.addressbook;
 
+import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +11,8 @@ import java.util.stream.Stream;
 
 public class AddressBook {
     /*
+     ******* Added Two file one for read the object and one for write one method
+     *       added for read the file ********
      * 1) creating object of arraylist
      * 2) created method for add contact details
      * 3) created method for edit contact details
@@ -20,11 +24,17 @@ public class AddressBook {
       1) creating object of arraylist
      */
     ArrayList<ContactPerson> list = new ArrayList<>();
+    File file1 = new File("AddressBookStore.txt");
+    File file2 = new File("AddressObj.txt");
+
+    ObjectInputStream objectInputStreamReader  = null;
+    ObjectOutputStream objectOutputStream = null;
+    OutputStreamWriter outputStreamWriter = null;
 
     /*
       2) created a method for add contact details
      */
-    public void addContact() {
+    public void addContact() throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much contact you want to add");
         int noOfContact = sc.nextInt();
@@ -59,8 +69,27 @@ public class AddressBook {
 
             // Adding details in arraylist
             list.add(contact);
+            //  writes the data
+            objectOutputStream = new ObjectOutputStream(Files.newOutputStream(file2.toPath()));
+            objectOutputStream.writeObject(list);
+            objectOutputStream.close();
+            // readable format
+            outputStreamWriter = new OutputStreamWriter(Files.newOutputStream(file1.toPath()));
+            outputStreamWriter.write(list.toString());
+            outputStreamWriter.close();
+            list.forEach(System.out::println);
         }
-        System.out.println(list);
+//        System.out.println(list);
+    }
+        public void readFile(){
+        if(file1.isFile()){
+            try {
+                objectInputStreamReader = new ObjectInputStream(Files.newInputStream(file1.toPath()));
+                list = (ArrayList<ContactPerson>) objectInputStreamReader.readObject();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }
 
     /*
@@ -130,7 +159,8 @@ public class AddressBook {
     /*
       6) created method to calling all the method
      */
-    public void callAddressBook(){
+    public void callAddressBook() throws Exception {
+        readFile();
         Scanner sc = new Scanner(System.in);
         boolean b = true;
         while (b) {

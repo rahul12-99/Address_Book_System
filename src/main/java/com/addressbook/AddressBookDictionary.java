@@ -23,6 +23,8 @@ public class AddressBookDictionary {
     Scanner scanner = new Scanner(System.in);
     AddressBook addressBook = new AddressBook();
 
+
+
     /*
      * 3) created method for add new addressBook
      */
@@ -32,6 +34,17 @@ public class AddressBookDictionary {
         map.put(newBookName, addressBook);
         System.out.println(newBookName);
     }
+//    public void readFile(){
+//        if(file2.isFile()){
+//            try {
+//                objectInputStreamReader = new ObjectInputStream(new FileInputStream(file2));
+//            } catch (FileNotFoundException e) {
+//                throw new RuntimeException(e);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
 
     /*
      * 4) created method for display addressBook
@@ -45,7 +58,7 @@ public class AddressBookDictionary {
     /*
      * 5) created method for select and perform operation on addressBook
      */
-    public void selectAddressBook() {
+    public void selectAddressBook() throws Exception {
         displayAddressBook();
         System.out.println("Select name of addressBook!");
         String inputName = scanner.next();
@@ -138,7 +151,7 @@ public class AddressBookDictionary {
     /*
      * 11) created main method for calling all the method
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         System.out.println("-*-*-*-*-*-Welcome To AddressBookDictionary-*-*-*-*-*-");
         AddressBookDictionary addressBookMain = new AddressBookDictionary();
         boolean b = true;

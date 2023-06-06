@@ -1,6 +1,8 @@
 package com.addressbook;
 
-public class ContactPerson {
+import java.io.Serializable;
+
+public class ContactPerson implements Serializable {
     /**
      * 1) initialize the variable
      * 2) using getter and setter method for getting and setting value
